@@ -49,19 +49,23 @@ const Collections = async () => {
   return (
     <div className="flex flex-col items-center gap-10 py-8 px-5">
       <p className="text-heading1-bold">Collections</p>
-      <div className="flex flex-wrap items-center justify-center gap-8">
-        {fakeData?.map((i: CollectionType) => (
-          <Link href={`/collections/${i._id}`} key={i._id}>
-            <Image
-              src={i.image}
-              alt={i.title}
-              width={350}
-              height={200}
-              className="rounded-lg cursor-pointer h-[400px] object-cover"
-            />
-          </Link>
-        ))}
-      </div>
+      {!fakeData || fakeData.length === 0 ? (
+        <p>No collections found</p>
+      ) : (
+        <div className="flex flex-wrap items-center justify-center gap-8">
+          {fakeData?.map((i: CollectionType) => (
+            <Link href={`/collections/${i._id}`} key={i._id}>
+              <Image
+                src={i.image}
+                alt={i.title}
+                width={350}
+                height={400}
+                className="rounded-lg cursor-pointer h-[400px] object-cover"
+              />
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
